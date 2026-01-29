@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Meu primeiro deploy</title>
+  <meta charset="UTF-8">
+  <title>Cloudflare Turnstile</title>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
-  <h1>🚀 Validando o Turnstile da Cloudflare</h1>
-  <p>Publicado via WSL + Node + Surge.</p>
+
+  <h1>🔐 Site protegido com Turnstile</h1>
+
+  <div class="cf-turnstile"
+       data-sitekey="0x4AAAAAACVY8D4rWy79x7Zc">
+  </div>
+
 </body>
 </html>
