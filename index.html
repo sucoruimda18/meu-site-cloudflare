@@ -11,8 +11,34 @@
   <h1>🔐 Site protegido com Turnstile</h1>
 
   <div class="cf-turnstile"
-       data-sitekey="0x4AAAAAACVY8D4rWy79x7Zc">
+       data-sitekey="0x4AAAAAACVY8D4rWy79x7Zc"
+       data-callback="onTurnstileSuccess">
   </div>
+
+  <pre id="log"></pre>
+
+  <script>
+    async function onTurnstileSuccess(token) {
+      console.log("Token recebido:", token);
+      document.getElementById("log").innerText = "Token recebido. Validando backend...";
+
+      const res = await fetch("/verify-turnstile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ token })
+      });
+
+      const data = await res.json();
+      console.log("Resposta backend:", data);
+
+      document.getElementById("log").innerText =
+        data.success
+          ? "✅ Backend validou com sucesso"
+          : "❌ Falha na validação";
+    }
+  </script>
 
 </body>
 </html>
